@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"sort"
-	"strings"
 
 	"github.com/pkg/errors"
 )
@@ -175,8 +174,7 @@ func getProcessedRespBody(resp http.Response) ([]byte, error) {
 		return nil, err
 	}
 
-	bodyStr := string(bodyDump)
-	return []byte(strings.ReplaceAll(bodyStr, "\\\"", "\"")), nil
+	return bodyDump, nil
 }
 
 func checkSuccessStatus(bodyStr []byte) error {
